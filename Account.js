@@ -45,11 +45,14 @@ class Account {
         anotherAccount.credit(amount)
         return this.#balance
       }
+
+      toString(){
+        return `${this.#name}'s balance is ${this.#balance} AMD`
+      }
 }
 
 let savingAcc = new Account("Saving account", 2000)
 const cardAcc = new Account("Card account", 1000)
 
-
-cardAcc.transferTo(savingAcc, 1000)
-console.log(cardAcc.credit(500))
+console.log(savingAcc.credit(500))
+console.log(savingAcc.toString())
