@@ -39,8 +39,17 @@ class Account {
         this.#balance -= amount
         return this.#balance
     }
+    transferTo(anotherAccount, amount) {
+        if (this.#balance < amount) return "Amount exceeded balance"
+        this.debit(amount)
+        anotherAccount.credit(amount)
+        return this.#balance
+      }
 }
 
 let savingAcc = new Account("Saving account", 2000)
+const cardAcc = new Account("Card account", 1000)
 
-console.log(savingAcc.debit(600))
+
+cardAcc.transferTo(savingAcc, 1000)
+console.log(cardAcc.credit(500))
