@@ -25,7 +25,10 @@ class Person {
     get age (){
         return this.#age
     }
+    toString(){
+        return `${this.#firstName} ${this.#lastName} is ${this.#age} years old`
+    }
 }
 
 let user1 = new Person("Tereza", "Khachatryan", "female", 20)
-console.log(user1.firstName)
+console.log(user1.toString())
