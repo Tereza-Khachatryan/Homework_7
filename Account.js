@@ -50,20 +50,26 @@ class Account {
         return `${this.#name}'s balance is ${this.#balance} AMD`
       }
 
-    static identifyAccounts(accountFirst , accountSecond){
-        if (!(accountFirst instanceof Account) || !(accountSecond instanceof Account)){
-            throw new Error ("Arguments must be instance of Account")
+      static identifyAccounts(accountFirst, accountSecond) {
+        if (!(accountFirst instanceof Account) || !(accountSecond instanceof Account)) {
+            throw new Error("Arguments must be instance of Account")
         }
-        return (accountFirst.name === accountSecond.name 
-            && accountFirst.id === accountSecond.if && 
-            accountFirst.balance === accountSecond.#balance
+        return (accountFirst.name === accountSecond.name && 
+                accountFirst.id === accountSecond.id && 
+                accountFirst.balance === accountSecond.balance
         )
     }
+    
 }
 
 const savingAcc = new Account("Saving account", 2000)
 const cardAcc = new Account("Card account", 1000)
 
 
-
-console.log(Account.identifyAccounts(cardAcc, savingAcc))
+console.log(savingAcc.toString())
+console.log(cardAcc.toString())
+cardAcc.transferTo(savingAcc, 500)
+console.log(savingAcc.toString())
+console.log(cardAcc.toString())
+console.log(Account.identifyAccounts(savingAcc, cardAcc))
+console.log(Account.identifyAccounts(savingAcc, savingAcc))
