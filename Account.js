@@ -29,9 +29,13 @@ class Account {
     set balance(newBalance){
         throw new Error ("Can not change the balance")
     }
-    
+
+    credit(amount){
+        return this.#balance += amount
+    }
+
 }
 
 let savingAcc = new Account("Saving account", 2000)
 
-console.log(savingAcc.balance)
+console.log(savingAcc.credit(400))
