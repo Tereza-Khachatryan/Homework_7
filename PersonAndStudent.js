@@ -30,5 +30,28 @@ class Person {
     }
 }
 
-let user1 = new Person("Tereza", "Khachatryan", "female", 20)
-console.log(user1.toString())
+    class Student extends Person {
+        #year
+        #fee
+        #program
+        constructor(firstName, lastName , gender , age){
+            super (firstName , lastName ,gender ,age)
+            this.#year = 1
+            this.#fee = 0
+            this.#program = []
+        }
+
+        get year (){
+            return this.#year
+        }
+
+        get program (){
+            return this.#program
+        }
+
+        passExam (programName , grade){
+            this.#program.push({programName : programName , grade: grade})
+        }
+}
+
+
