@@ -34,8 +34,13 @@ class Account {
         return this.#balance += amount
     }
 
+    debit (amount){
+        if(this.#balance < amount) return "Amount exceeds balance"
+        this.#balance -= amount
+        return this.#balance
+    }
 }
 
 let savingAcc = new Account("Saving account", 2000)
 
-console.log(savingAcc.credit(400))
+console.log(savingAcc.debit(600))
