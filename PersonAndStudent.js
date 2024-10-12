@@ -52,6 +52,24 @@ class Person {
         passExam (programName , grade){
             this.#program.push({programName : programName , grade: grade})
         }
+
+        isAllPassed (){
+            const notPassingGrade = this.#program.some(({grade}) => grade < 50)
+            if(notPassingGrade) {
+                this.#program = []
+                return "Try next year , your grade is less"
+            } else {
+                this.#year ++
+                this.#program = []
+                return "Congratulations , you passed"
+            }
+        }
 }
+const student1 = new Student ("Tereza" , "Khachatryan" , "female" , 20)
+
+student1.passExam("English", 90)
+student1.passExam("Russian", 40)
+
+console.log(student1.isAllPassed())
 
 
