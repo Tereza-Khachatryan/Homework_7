@@ -19,3 +19,17 @@ class Book {
         return this.#title === title && this.#author === author
     }
 }
+
+class LibraryBookBase extends Book {
+    #bookId
+    constructor(title , author , bookId){
+        super(title , author)
+        this.#bookId = bookId
+    }
+    get bookId (){
+        return this.#bookId
+    }
+    toString(){
+        return `${this.title}'s id is ${this.#bookId} , author: ${this.author}`
+    }
+}
