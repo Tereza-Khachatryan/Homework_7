@@ -1,106 +1,106 @@
 class Book {
-    #title
-    #author
+    _title
+    _author
     constructor(title , author){
-        this.#title = title
-        this.#author = author
+        this._title = title
+        this._author = author
     }
     get title (){
-        return this.#title
+        return this._title
     }
     get author (){
-        return this.#author
+        return this._author
     }
     toString(){
-        return `${this.#title} by ${this.#author}`
+        return `${this._title} by ${this._author}`
     }
     isTheSameBook(book){
        const {title , author} = book
-        return this.#title === title && this.#author === author
+        return this._title === title && this._author === author
     }
 }
 
 class LibraryBookBase extends Book {
-    #bookId
+    _bookId
     constructor(title , author , bookId){
         super(title , author)
-        this.#bookId = bookId
+        this._bookId = bookId
     }
     get bookId (){
-        return this.#bookId
+        return this._bookId
     }
     toString(){
-        return `${this.title}'s id is ${this.#bookId} , author: ${this.author}`
+        return `${this.title}'s id is ${this._bookId} , author: ${this.author}`
     }
 }
 
 class LibraryBook extends LibraryBookBase {
-    #quantity
+    _quantity
     constructor(title , author , bookId , quantity){
         super(title , author , bookId)
-        this.#quantity = quantity
+        this._quantity = quantity
     }
     get quantity (){
-        return this.#quantity
+        return this._quantity
     }
     toString(){
         return `Title: ${this.title} , author: ${this.author} ,bookId :${this.bookId} , quantity: ${this.#quantity} `
     }
     increaseQuantityBy(amount){
-        return this.#quantity += amount
+        return this._quantity += amount
     }
     decreaseQuantityBy(amount){
-        return this.#quantity -= amount
+        return this._quantity -= amount
     }
 }
 
 class ReaderBook extends LibraryBookBase {
-    #expirationDate
-    #isReturned
+    _expirationDate
+    _isReturned
     constructor(title , author , bookId ,expirationDate ,isReturned){
         super(title , author , bookId)
-        this.#expirationDate = expirationDate
-        this.#isReturned = isReturned
+        this._expirationDate = expirationDate
+        this._isReturned = isReturned
     }
     get isReturned (){
-        return this.#isReturned
+        return this._isReturned
     }
     get expirationDate(){
-        return this.#expirationDate
+        return this._expirationDate
     }
     toString (){
-        const returned = this.#isReturned ? "Returned" : "Not returned"
-        return  ` ${this.title}'s expiration Date is ${this.#expirationDate} ,author: ${this.author}.BookID:${this.bookId}, The book is ${returned}`
+        const returned = this._isReturned ? "Returned" : "Not returned"
+        return  ` ${this.title}'s expiration Date is ${this._expirationDate} ,author: ${this.author}.BookID:${this.bookId}, The book is ${returned}`
     }
 }
 
 class Reader {
-    #firstName
-    #lastName
-    #readerId
-    #books
+    _firstName
+    _lastName
+    _readerId
+    _books
     constructor(firstName , lastName , readerId , books = []){
-        this.#firstName = firstName
-        this.#lastName = lastName
-        this.#readerId = readerId
-        this.#books = books
+        this._firstName = firstName
+        this._lastName = lastName
+        this._readerId = readerId
+        this._books = books
     }
     get firstName (){
-        return this.#firstName
+        return this._firstName
     }
     get lastName (){
-        return this.#lastName
+        return this._lastName
     }
     get readerId(){
-        return this.#readerId
+        return this._readerId
     }
     get books (){
-        return this.#books
+        return this._books
     }
     toString(){
-        const bookList = this.#books.length > 0 ? this.#books.map(book => book.toString()).join(', ') :
+        const bookList = this._books.length > 0 ? this._books.map(book => book.toString()).join(', ') :
         "No books borrowed"
-        return `Name: ${this.#firstName}, lastName: ${this.lastName}, readerId: ${this.#readerId}, books: ${bookList}`
+        return `Name: ${this._firstName}, lastName: ${this.lastName}, readerId: ${this._readerId}, books: ${bookList}`
 
     }
 
@@ -108,7 +108,7 @@ class Reader {
         if (book instanceof LibraryBook && library instanceof Library) {
             const availableBook = library.books.find(b => b.isTheSameBook(book) && b.quantity > 0)
             if (availableBook) {
-                return library.lendBook(availableBook, this.#readerId)
+                return library.lendBook(availableBook, this._readerId)
             } else {
                 return "Book is not available.";
             }
@@ -119,48 +119,48 @@ class Reader {
 }
 
 class Library {
-    #books
-    #readers
+    _books
+    _readers
     constructor(books = [], readers = []){
-        this.#books = books
-        this.#readers = readers
+        this._books = books
+        this._readers = readers
     }
     get books (){
-        return this.#books
+        return this._books
     }
     get readers (){
-        return this.#readers
+        return this._readers
     }
     doHaveBook (requestedBook){
-        return this.#books.some(
+        return this._books.some(
             (book)=> book.isTheSameBook(requestedBook) && book.quantity > 0)
     }
     addBook(newBook){
-        const existingBook = this.#books.find((book) => book.isTheSameBook(newBook))
+        const existingBook = this._books.find((book) => book.isTheSameBook(newBook))
         if(existingBook){
             existingBook.increaseQuantityBy(1)
         } else {
-            this.#books.push(newBook)
+            this._books.push(newBook)
         }
-        return this.#books
+        return this._books
     }
     addBooks(newBooks){
         newBooks.forEach((book) => this.addBook(book))
-        return this.#books
+        return this._books
     }
     checkReaderId(readerId){
-        return this.#readers.some((reader) => reader.readerId === readerId)
+        return this._readers.some((reader) => reader.readerId === readerId)
     }
 
     lendBook(book, readerId) {
-        const reader = this.#readers.find(reader => reader.readerId === readerId);
+        const reader = this._readers.find(reader => reader.readerId === readerId);
         if (!reader) {
-            console.log("Reader not found.");
+            console.log("Reader not found.")
             return null;
         }
     
         if (!this.doHaveBook(book)) {
-            console.log("Book not available.");
+            console.log("Book not available.")
             return null;
         }
     
@@ -170,7 +170,7 @@ class Library {
             book.bookId,
             "2024-10-10",
             false
-        );
+        )
     
         reader.books.push(readerBook);
         book.decreaseQuantityBy(1);
