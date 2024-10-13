@@ -1,10 +1,11 @@
 class CoffeeShop {
     _menu
+    _name
     #orders
-    constructor (name , menu , orders) {
-        this.name = name
+    constructor (name , menu , orders = []) {
+        this._name = name
         this._menu = menu
-        this.#orders = []
+        this.#orders = orders
     }
     addOrder(itemName){
         const item = this._menu.find(({name}) => name === itemName)
