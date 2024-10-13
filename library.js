@@ -33,3 +33,23 @@ class LibraryBookBase extends Book {
         return `${this.title}'s id is ${this.#bookId} , author: ${this.author}`
     }
 }
+
+class LibraryBook extends LibraryBookBase {
+    #quantity
+    constructor(title , author , bookId , quantity){
+        super(title , author , bookId)
+        this.#quantity = quantity
+    }
+    get quantity (){
+        return this.#quantity
+    }
+    toString(){
+        return `Title: ${this.title} , author: ${this.author} ,bookId :${this.bookId} , quantity: ${this.#quantity} `
+    }
+    increaseQuantityBy(amount){
+        return this.#quantity += amount
+    }
+    decreaseQuantityBy(amount){
+        return this.#quantity -= amount
+    }
+}
