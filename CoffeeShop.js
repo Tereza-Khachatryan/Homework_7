@@ -1,49 +1,50 @@
 class CoffeeShop {
-    #menu
-    constructor (name , menu) {
+    _menu
+    #orders
+    constructor (name , menu , orders) {
         this.name = name
-        this.#menu = menu
-        this.orders = []
+        this._menu = menu
+        this.#orders = []
     }
     addOrder(itemName){
-        const item = this.#menu.find(({name}) => name === itemName)
+        const item = this._menu.find(({name}) => name === itemName)
         if(item){
-            this.orders.push(itemName)
+            this.#orders.push(itemName)
             return "Order added"
         } else {
             return "This item is currently unavailable!"
         }
     }
     listOrders(){
-        return this.orders
+        return this.#orders
     }
     dueAmount(){
-        return this.orders.reduce((sum , itemName) => {
-            const item = this.#menu.find(({name}) => name === itemName)
+        return this.#orders.reduce((sum , itemName) => {
+            const item = this._menu.find(({name}) => name === itemName)
             return item ? sum + item.price : sum
         },0)
     }
     drinkOnly(){
-        return this.#menu
+        return this._menu
         .filter(({type}) => type === 'drink')
         .map(({name}) => name)
     }
     foodOnly(){
-        return this.#menu
+        return this._menu
         .filter(({type}) => type === 'food')
         .map(({name}) => name)
     }
     fullfillOrder(){
-        if(this.orders.length > 0){
-            const itemName = this.orders.shift()
+        if(this.#orders.length > 0){
+            const itemName = this.#orders.shift()
             return `${itemName} is ready!`
         }
         else return "All orders have been fulfilled!"
     }
     cheapestItem (){
-        if(this.#menu.length ===0) return "No item in menu"
+        if(this._menu.length ===0) return "No item in menu"
 
-        const cheapest = this.#menu.reduce((cheapest, {price , name}) => {
+        const cheapest = this._menu.reduce((cheapest, {price , name}) => {
             return price < cheapest.price ? {price , name} : cheapest
         })
             return cheapest.name
