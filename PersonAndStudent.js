@@ -1,66 +1,66 @@
 class Person {
-    #firstName
-    #lastName
-    #gender
-    #age
+    _firstName
+    _lastName
+    _gender
+    _age
     constructor (firstName , lastName , gender , age){
-        this.#firstName = firstName
-        this.#lastName = lastName
-        this.#gender = gender
-        this.#age = age
+        this._firstName = firstName
+        this._lastName = lastName
+        this._gender = gender
+        this._age = age
     }
 
     get firstName (){
-        return this.#firstName
+        return this._firstName
     }
 
     get lastName (){
-        return this.#lastName
+        return this._lastName
     }
 
     get gender (){
-        return this.#gender
+        return this._gender
     }
 
     get age (){
-        return this.#age
+        return this._age
     }
     toString(){
-        return `${this.#firstName} ${this.#lastName} is ${this.#age} years old`
+        return `${this._firstName} ${this._lastName} is ${this._age} years old`
     }
 }
 
     class Student extends Person {
-        #year
+        _year
+        _program
         #fee
-        #program
         constructor(firstName, lastName , gender , age){
             super (firstName , lastName ,gender ,age)
-            this.#year = 1
+            this._year = 1
             this.#fee = 0
-            this.#program = []
+            this._program = []
         }
 
         get year (){
-            return this.#year
+            return this._year
         }
 
         get program (){
-            return this.#program
+            return this._program
         }
 
         passExam (programName , grade){
-            this.#program.push({programName : programName , grade: grade})
+            this._program.push({programName : programName , grade: grade})
         }
 
         isAllPassed (){
-            const notPassingGrade = this.#program.some(({grade}) => grade < 50)
+            const notPassingGrade = this._program.some(({grade}) => grade < 50)
             if(notPassingGrade) {
-                this.#program = []
+                this._program = []
                 return "Try next year , your grade is less"
             } else {
-                this.#year ++
-                this.#program = []
+                this._year ++
+                this._program = []
                 return "Congratulations , you passed"
             }
         }
