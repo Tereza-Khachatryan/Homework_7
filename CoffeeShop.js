@@ -7,23 +7,22 @@ class CoffeeShop {
         this._menu = menu
         this.#orders = orders
     }
-    addOrder(itemName){
-        const item = this._menu.find(({name}) => name === itemName)
-        if(item){
+    addOrder(itemName) {
+        const item = this._menu.find(({ name}) => name === itemName)
+        if (item) {
             this.#orders.push(itemName)
             return "Order added"
         } else {
             return "This item is currently unavailable!"
         }
     }
-    listOrders(){
+
+    listOrders() {
         return this.#orders
     }
-    dueAmount(){
-        return this.#orders.reduce((sum , itemName) => {
-            const item = this._menu.find(({name}) => name === itemName)
-            return item ? sum + item.price : sum
-        },0)
+
+    dueAmount() {
+        return this._menu.reduce((acc , item) => acc + item.price, 0)
     }
     drinkOnly(){
         return this._menu
@@ -75,6 +74,5 @@ const tcs = new CoffeeShop("The Coffee Shop", menu)
 
 tcs.addOrder("cranberry juice")
 tcs.addOrder("lemonade")
-console.log(tcs.fullfillOrder())
-console.log(tcs.cheapestItem())
-console.log(tcs.drinkOnly())
+console.log(tcs.listOrders())
+console.log(tcs.dueAmount())
