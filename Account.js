@@ -1,25 +1,25 @@
 class Account {
-    #id
-    #name
-    #balance
+    _id
+    _name
+    _balance
     static instanceCount = 0
     constructor ( name , balance){
         Account.instanceCount++
-        this.#id = Account.instanceCount
-        this.#name = name 
-        this.#balance = balance
+        this._id = Account.instanceCount
+        this._name = name 
+        this._balance = balance
     }
 
     get name (){
-        return this.#name
+        return this._name
     }
 
     get id(){
-        return this.#id
+        return this._id
     }
 
     get balance (){
-        return this.#balance
+        return this._balance
     }
 
     set name (NewName){
@@ -31,23 +31,23 @@ class Account {
     }
 
     credit(amount){
-        return this.#balance += amount
+        return this._balance += amount
     }
 
     debit (amount){
-        if(this.#balance < amount) return "Amount exceeds balance"
-        this.#balance -= amount
-        return this.#balance
+        if(this._balance < amount) return "Amount exceeds balance"
+        this._balance -= amount
+        return this._balance
     }
     transferTo(anotherAccount, amount) {
-        if (this.#balance < amount) return "Amount exceeded balance"
+        if (this._balance < amount) return "Amount exceeded balance"
         this.debit(amount)
         anotherAccount.credit(amount)
-        return this.#balance
+        return this._balance
       }
 
     toString(){
-        return `${this.#name}'s balance is ${this.#balance} AMD`
+        return `${this._name}'s balance is ${this._balance} AMD`
       }
 
       static identifyAccounts(accountFirst, accountSecond) {
