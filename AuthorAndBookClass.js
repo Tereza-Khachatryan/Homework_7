@@ -1,22 +1,22 @@
 class Author {
-    #name
-    #email
-    #gender
+    _name
+    _email
+    _gender
     constructor (name, email ,gender){
-        this.#name = name
-        this.#email = email
-        this.#gender = gender
+        this._name = name
+        this._email = email
+        this._gender = gender
 
 }
     get name (){
-        return this.#name
+        return this._name
     }
     get gender (){
-        return this.#gender
+        return this._gender
     }
 
     get email(){
-        return this.#email
+        return this._email
     }
     
     set name (newName){
@@ -30,7 +30,7 @@ class Author {
     }
 
     toString() {
-        return this.#gender === "male" ? `Mr. ${this.#name}` : `Ms. ${this.#name}`
+        return this._gender === "male" ? `Mr. ${this._name}` : `Ms. ${this._name}`
     }
 }
 
@@ -39,39 +39,39 @@ let newEmail = "newEmail@gmail.com"
 let newgender = "NewGender"
 
 class Book {
-    #title
-    #author
-    #quantity
-    #price
+    _title
+    _author
+    _quantity
+    _price
     constructor (title, author, price, quantity){
-        this.#title = title 
-        this.#author = author
-        this.#price = price
-        this.#quantity = quantity
+        this._title = title 
+        this._author = author
+        this._price = price
+        this._quantity = quantity
     }
 
     get title (){
-        return this.#title
+        return this._title
     }
 
     get price (){
-        return this.#price
+        return this._price
     }
 
     get author (){
-        return this.#author
+        return this._author
     }
 
     get quantity (){
-        return this.#quantity
+        return this._quantity
     }
 
     getProfit() {
-        return this.#price * this.#quantity
+        return this._price * this._quantity
     }
 
     toString() {
-        return `Book Title: ${this.#title}, Author: ${this.#author.toString()}, Price: $${this.#price}, Quantity: ${this.#quantity}, Profit: ${this.getProfit()}`;
+        return `Book Title: ${this._title}, Author: ${this._author.toString()}, Price: $${this._price}, Quantity: ${this._quantity}, Profit: ${this.getProfit()}`;
     }
 
 }
