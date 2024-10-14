@@ -1,3 +1,4 @@
+
 class CoffeeShop {
     _menu
     _name
@@ -10,7 +11,7 @@ class CoffeeShop {
     addOrder(itemName) {
         const item = this._menu.find(({ name}) => name === itemName)
         if (item) {
-            this.#orders.push(itemName)
+            this.#orders.push(item)
             return "Order added"
         } else {
             return "This item is currently unavailable!"
@@ -18,11 +19,10 @@ class CoffeeShop {
     }
 
     listOrders() {
-        return this.#orders
+        return this.#orders.map((order) => order.name)
     }
-
     dueAmount() {
-        return this._menu.reduce((acc , item) => acc + item.price, 0)
+        return this.#orders.reduce((acc , item) => acc + item.price, 0)
     }
     drinkOnly(){
         return this._menu
